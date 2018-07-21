@@ -1,6 +1,6 @@
-package io.github.portfoligno.kotlin.enum.test
+package io.github.portfoligno.kotlin.enumx.test
 
-import io.github.portfoligno.kotlin.enum.enumOf
+import io.github.portfoligno.kotlin.enumx.enumOf
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 
