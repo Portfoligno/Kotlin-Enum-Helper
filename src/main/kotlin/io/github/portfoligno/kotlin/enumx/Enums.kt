@@ -15,12 +15,12 @@ val enumConstants: MutableMap<Class<*>, Map<String, WeakReference<*>>> = WeakHas
  * @see [enumOf]
  */
 fun <E : Enum<E>> getOrNull(enumClass: Class<E>, name: String): E? {
+  // Inlined closures
   val map = enumConstants.getOrPut(enumClass) {
     EnumSet
       .allOf(enumClass)
       .associateBy({ it.name }, ::WeakReference)
   }
-
   return enumClass.cast(map[name]?.let {
     it.get() ?: throw AssertionError("Empty reference") // impossible
   })

@@ -1,6 +1,9 @@
 package io.github.portfoligno.kotlin.enumx.test
 
+import com.google.common.reflect.ClassPath
 import io.github.portfoligno.kotlin.enumx.enumOf
+import io.kotlintest.matchers.beEmpty
+import io.kotlintest.should
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 
@@ -22,5 +25,15 @@ class EnumHelperSpec : StringSpec({
   }
   "Get YELLOW should be null" {
     enumOf<Color>("YELLOW") shouldBe null
+  }
+
+  "No anonymous classes in the implementation" {
+    val cls = Class.forName("io.github.portfoligno.kotlin.enumx.Enums")
+    val anonymousClasses = ClassPath
+        .from(cls.classLoader)
+        .allClasses
+        .filter { it.name.startsWith("${cls.name}\$") }
+
+    anonymousClasses should beEmpty()
   }
 })
