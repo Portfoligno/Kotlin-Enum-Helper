@@ -11,10 +11,15 @@ java {
   sourceCompatibility = JavaVersion.VERSION_1_7
   targetCompatibility = JavaVersion.VERSION_1_7
 }
+tasks.withType<Test> {
+  useJUnitPlatform()
+}
 
 repositories {
   jcenter()
 }
 dependencies {
   implementation(kotlin("stdlib"))
+
+  testImplementation("io.kotlintest:kotlintest-runner-junit5:3.1.8")
 }
