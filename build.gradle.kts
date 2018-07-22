@@ -4,7 +4,7 @@ plugins {
   kotlin("jvm") version "1.2.51"
 }
 tasks.getByName<Wrapper>("wrapper") {
-  gradleVersion = "4.8.1"
+  gradleVersion = "4.9"
 }
 
 java {
