@@ -32,8 +32,8 @@ fun <T : Enum<T>> enumOf(enumClass: Class<T>, name: String): T? {
  *
  * @see [java.lang.Enum.valueOf]
  */
-@Suppress("NOTHING_TO_INLINE") // Hide from Java callers
-inline fun <T : Enum<T>> enumOf(enumClass: KClass<T>, name: String): T? =
+@JvmSynthetic // Hide from Java callers
+fun <T : Enum<T>> enumOf(enumClass: KClass<T>, name: String): T? =
     enumOf(enumClass.java, name)
 
 /**
@@ -42,4 +42,4 @@ inline fun <T : Enum<T>> enumOf(enumClass: KClass<T>, name: String): T? =
  * @see [enumValueOf]
  */
 inline fun <reified T : Enum<T>> enumOf(name: String): T? =
-    enumOf(T::class, name)
+    enumOf(T::class.java, name)
