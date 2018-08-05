@@ -1,9 +1,9 @@
 plugins {
   maven
   `java-library`
-  kotlin("jvm") version "1.2.51"
+  kotlin("jvm") version "1.2.60"
 }
-tasks.getByName<Wrapper>("wrapper") {
+tasks.withType<Wrapper> {
   gradleVersion = "4.9"
 }
 
@@ -19,7 +19,9 @@ repositories {
   jcenter()
 }
 dependencies {
-  implementation(kotlin("stdlib"))
+  implementation(create(kotlin("stdlib"), closureOf<ExternalModuleDependency> {
+    exclude("org.jetbrains", "annotations")
+  }))
 
   testImplementation("io.kotlintest:kotlintest-runner-junit5:3.1.8")
 }
